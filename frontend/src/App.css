@@ -431,3 +431,191 @@
   font-size: 0.8rem;
   color: var(--text-muted);
 }
+
+.check-detail {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.check-item--error {
+  color: var(--danger);
+}
+
+.sim-errors {
+  margin-top: 8px;
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+}
+
+.sim-difficulty {
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+
+/* Sidebar section toggle */
+.sidebar-section-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  margin-bottom: 12px;
+  color: inherit;
+}
+
+.sidebar-section-toggle h3 {
+  margin-bottom: 0;
+}
+
+/* Sidebar objectives */
+.sidebar-objectives-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.sidebar-objective-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.sidebar-objective-num {
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Sidebar instructions */
+.sidebar-instructions-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 4px;
+  padding: 0;
+}
+
+.sidebar-instruction-item {
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.sidebar-instruction-item strong {
+  display: block;
+  color: var(--primary);
+  margin-bottom: 2px;
+}
+
+.sidebar-instruction-item p {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Sidebar theory */
+.sidebar-theory-text {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+/* Selected device in list */
+.device-list-item--selected {
+  background: rgba(59,130,246,0.15);
+  border-radius: 4px;
+  outline: 1px solid var(--primary);
+}
+
+/* Device Config Panel */
+.device-config-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border-top: 2px solid var(--primary);
+  padding: 14px 16px;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.4);
+  z-index: 10;
+}
+
+.device-config-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.config-close-btn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0 4px;
+}
+
+.config-close-btn:hover {
+  color: var(--text);
+}
+
+.config-hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.config-textarea {
+  width: 100%;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.config-error {
+  color: var(--danger);
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+.config-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.btn-secondary {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--bg-card-hover);
+}

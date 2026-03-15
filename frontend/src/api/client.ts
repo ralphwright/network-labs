@@ -88,6 +88,7 @@ export const createSimulation = (data: {
   topology_id: string
   lab_id: string
   user_id?: string
+  configuration?: Record<string, Record<string, unknown>>
 }): Promise<Simulation> =>
   request<Simulation>('/api/simulations', {
     method: 'POST',

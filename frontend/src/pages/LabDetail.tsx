@@ -78,7 +78,7 @@ export default function LabDetail() {
               {lab.instructions.map((step) => (
                 <li key={step.step} className="instruction-item">
                   <h3>{step.title}</h3>
-                  <p>{step.content}</p>
+                  <p>{step.description}</p>
                 </li>
               ))}
             </ol>
