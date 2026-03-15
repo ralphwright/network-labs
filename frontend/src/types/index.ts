@@ -31,7 +31,7 @@ export interface LabSummary {
 export interface Instruction {
   step: number
   title: string
-  content: string
+  description: string
 }
 
 export interface InitialTopology {
@@ -101,6 +101,13 @@ export interface Connection {
 }
 
 export interface SimulationCheck {
+  passed: boolean
+  message: string
+}
+
+export interface SimulationObjective {
+  objective_id: string
+  description: string
   passed: boolean
   message: string
 }

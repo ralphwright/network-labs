@@ -27,10 +27,13 @@ class TopologyService:
 
     async def topology_to_dict(self, topology: Topology) -> dict:
         devices = []
+        id_to_name: dict[str, str] = {}
         for d in topology.devices:
+            id_to_name[str(d.id)] = d.label
             devices.append({
                 "id": str(d.id),
                 "type": d.device_type,
+                "name": d.label,
                 "label": d.label,
                 "x": d.x,
                 "y": d.y,
@@ -38,10 +41,14 @@ class TopologyService:
             })
         connections = []
         for c in topology.connections:
+            source_id = str(c.source_device_id)
+            target_id = str(c.target_device_id)
             connections.append({
                 "id": str(c.id),
-                "source": str(c.source_device_id),
-                "target": str(c.target_device_id),
+                "source": id_to_name.get(source_id, source_id),
+                "target": id_to_name.get(target_id, target_id),
+                "source_device_id": source_id,
+                "target_device_id": target_id,
                 "source_interface": c.source_interface,
                 "target_interface": c.target_interface,
                 "link_type": c.link_type,
