@@ -9,7 +9,7 @@ import {
   createSimulation,
   getSimulation,
 } from '../api/client'
-import type { Lab, Topology, Device, Connection, Simulation } from '../types'
+import type { Lab, Topology, Device, Connection, Simulation, SimulationCheck } from '../types'
 
 const DEVICE_ICONS: Record<string, string> = {
   router: '🔷',
@@ -261,21 +261,26 @@ export default function TopologyEditor() {
                 <p>
                   <strong>Status:</strong> {simulation.status}
                 </p>
-                {simulation.verification_results && (
+                {simulation.results && (
                   <>
-                    <p>
-                      <strong>Score:</strong>{' '}
-                      {simulation.verification_results.score}
-                    </p>
-                    <p>
-                      <strong>Passed:</strong>{' '}
-                      {simulation.verification_results.passed ? '✅ Yes' : '❌ No'}
-                    </p>
-                    {simulation.verification_results.checks.map((check, i) => (
-                      <div key={i} className="check-item">
-                        {check.passed ? '✅' : '❌'} {check.message}
-                      </div>
-                    ))}
+                    {simulation.results.score !== undefined && (
+                      <p>
+                        <strong>Score:</strong>{' '}
+                        {simulation.results.score as number}
+                      </p>
+                    )}
+                    {simulation.results.success !== undefined && (
+                      <p>
+                        <strong>Passed:</strong>{' '}
+                        {simulation.results.success ? '✅ Yes' : '❌ No'}
+                      </p>
+                    )}
+                    {Array.isArray(simulation.results.checks) &&
+                      (simulation.results.checks as SimulationCheck[]).map((check, i) => (
+                        <div key={i} className="check-item">
+                          {check.passed ? '✅' : '❌'} {check.message}
+                        </div>
+                      ))}
                   </>
                 )}
               </div>
