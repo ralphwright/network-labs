@@ -32,15 +32,15 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "sw1", "type": "switch", "name": "SW1"},
-                {"id": "pc1", "type": "host", "name": "PC1"},
-                {"id": "pc2", "type": "host", "name": "PC2"},
-                {"id": "pc3", "type": "host", "name": "PC3"},
+                {"type": "switch", "label": "SW1", "x": 100, "y": 200},
+                {"type": "host", "label": "PC1", "x": 300, "y": 200},
+                {"type": "host", "label": "PC2", "x": 500, "y": 200},
+                {"type": "host", "label": "PC3", "x": 700, "y": 200},
             ],
             "connections": [
-                {"from": "pc1", "to": "sw1", "from_port": "eth0", "to_port": "fa0/1"},
-                {"from": "pc2", "to": "sw1", "from_port": "eth0", "to_port": "fa0/2"},
-                {"from": "pc3", "to": "sw1", "from_port": "eth0", "to_port": "fa0/3"},
+                {"source": "PC1", "target": "SW1", "source_interface": "eth0", "target_interface": "fa0/1"},
+                {"source": "PC2", "target": "SW1", "source_interface": "eth0", "target_interface": "fa0/2"},
+                {"source": "PC3", "target": "SW1", "source_interface": "eth0", "target_interface": "fa0/3"},
             ],
         },
         "verification_rules": {"required_vlans": [10, 20], "trunk_ports": ["fa0/24"]},
@@ -76,14 +76,14 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "sw1", "type": "switch", "name": "SW1"},
-                {"id": "sw2", "type": "switch", "name": "SW2"},
-                {"id": "sw3", "type": "switch", "name": "SW3"},
+                {"type": "switch", "label": "SW1", "x": 100, "y": 200},
+                {"type": "switch", "label": "SW2", "x": 300, "y": 200},
+                {"type": "switch", "label": "SW3", "x": 500, "y": 200},
             ],
             "connections": [
-                {"from": "sw1", "to": "sw2", "from_port": "fa0/1", "to_port": "fa0/1"},
-                {"from": "sw2", "to": "sw3", "from_port": "fa0/2", "to_port": "fa0/1"},
-                {"from": "sw1", "to": "sw3", "from_port": "fa0/2", "to_port": "fa0/2"},
+                {"source": "SW1", "target": "SW2", "source_interface": "fa0/1", "target_interface": "fa0/1"},
+                {"source": "SW2", "target": "SW3", "source_interface": "fa0/2", "target_interface": "fa0/1"},
+                {"source": "SW1", "target": "SW3", "source_interface": "fa0/2", "target_interface": "fa0/2"},
             ],
         },
         "verification_rules": {"root_bridge": "sw1", "check_no_loops": True},
@@ -119,13 +119,13 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "r1", "type": "router", "name": "R1"},
-                {"id": "r2", "type": "router", "name": "R2"},
-                {"id": "r3", "type": "router", "name": "R3"},
+                {"type": "router", "label": "R1", "x": 100, "y": 200},
+                {"type": "router", "label": "R2", "x": 300, "y": 200},
+                {"type": "router", "label": "R3", "x": 500, "y": 200},
             ],
             "connections": [
-                {"from": "r1", "to": "r2", "from_port": "gi0/0", "to_port": "gi0/0"},
-                {"from": "r2", "to": "r3", "from_port": "gi0/1", "to_port": "gi0/0"},
+                {"source": "R1", "target": "R2", "source_interface": "gi0/0", "target_interface": "gi0/0"},
+                {"source": "R2", "target": "R3", "source_interface": "gi0/1", "target_interface": "gi0/0"},
             ],
         },
         "verification_rules": {"ospf_neighbors": True, "full_reachability": True},
@@ -161,12 +161,12 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "sw1", "type": "switch", "name": "SW1"},
-                {"id": "sw2", "type": "switch", "name": "SW2"},
+                {"type": "switch", "label": "SW1", "x": 100, "y": 200},
+                {"type": "switch", "label": "SW2", "x": 300, "y": 200},
             ],
             "connections": [
-                {"from": "sw1", "to": "sw2", "from_port": "fa0/1", "to_port": "fa0/1"},
-                {"from": "sw1", "to": "sw2", "from_port": "fa0/2", "to_port": "fa0/2"},
+                {"source": "SW1", "target": "SW2", "source_interface": "fa0/1", "target_interface": "fa0/1"},
+                {"source": "SW1", "target": "SW2", "source_interface": "fa0/2", "target_interface": "fa0/2"},
             ],
         },
         "verification_rules": {"port_channel_active": True, "min_member_links": 2},
@@ -202,13 +202,13 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "r1", "type": "router", "name": "R1"},
-                {"id": "pc1", "type": "host", "name": "PC1"},
-                {"id": "pc2", "type": "host", "name": "PC2"},
+                {"type": "router", "label": "R1", "x": 100, "y": 200},
+                {"type": "host", "label": "PC1", "x": 300, "y": 200},
+                {"type": "host", "label": "PC2", "x": 500, "y": 200},
             ],
             "connections": [
-                {"from": "r1", "to": "pc1", "from_port": "gi0/0", "to_port": "eth0"},
-                {"from": "r1", "to": "pc2", "from_port": "gi0/0", "to_port": "eth0"},
+                {"source": "R1", "target": "PC1", "source_interface": "gi0/0", "target_interface": "eth0"},
+                {"source": "R1", "target": "PC2", "source_interface": "gi0/0", "target_interface": "eth0"},
             ],
         },
         "verification_rules": {"clients_get_ip": True, "correct_pool": "192.168.1.0/24"},
@@ -244,13 +244,13 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "dns1", "type": "server", "name": "DNS1"},
-                {"id": "pc1", "type": "host", "name": "PC1"},
-                {"id": "sw1", "type": "switch", "name": "SW1"},
+                {"type": "server", "label": "DNS1", "x": 100, "y": 200},
+                {"type": "host", "label": "PC1", "x": 300, "y": 200},
+                {"type": "switch", "label": "SW1", "x": 500, "y": 200},
             ],
             "connections": [
-                {"from": "dns1", "to": "sw1", "from_port": "eth0", "to_port": "fa0/1"},
-                {"from": "pc1", "to": "sw1", "from_port": "eth0", "to_port": "fa0/2"},
+                {"source": "DNS1", "target": "SW1", "source_interface": "eth0", "target_interface": "fa0/1"},
+                {"source": "PC1", "target": "SW1", "source_interface": "eth0", "target_interface": "fa0/2"},
             ],
         },
         "verification_rules": {"dns_resolution": True, "resolve_local_names": True},
@@ -286,11 +286,11 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "r1", "type": "router", "name": "R1", "asn": 65001},
-                {"id": "r2", "type": "router", "name": "R2", "asn": 65002},
+                {"type": "router", "label": "R1", "x": 100, "y": 200, "asn": 65001},
+                {"type": "router", "label": "R2", "x": 300, "y": 200, "asn": 65002},
             ],
             "connections": [
-                {"from": "r1", "to": "r2", "from_port": "gi0/0", "to_port": "gi0/0"},
+                {"source": "R1", "target": "R2", "source_interface": "gi0/0", "target_interface": "gi0/0"},
             ],
         },
         "verification_rules": {"bgp_established": True, "routes_exchanged": True},
@@ -326,13 +326,13 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "pe1", "type": "router", "name": "PE1"},
-                {"id": "p1", "type": "router", "name": "P1"},
-                {"id": "pe2", "type": "router", "name": "PE2"},
+                {"type": "router", "label": "PE1", "x": 100, "y": 200},
+                {"type": "router", "label": "P1", "x": 300, "y": 200},
+                {"type": "router", "label": "PE2", "x": 500, "y": 200},
             ],
             "connections": [
-                {"from": "pe1", "to": "p1", "from_port": "gi0/0", "to_port": "gi0/0"},
-                {"from": "p1", "to": "pe2", "from_port": "gi0/1", "to_port": "gi0/0"},
+                {"source": "PE1", "target": "P1", "source_interface": "gi0/0", "target_interface": "gi0/0"},
+                {"source": "P1", "target": "PE2", "source_interface": "gi0/1", "target_interface": "gi0/0"},
             ],
         },
         "verification_rules": {"mpls_enabled": True, "ldp_neighbors": True},
@@ -368,13 +368,13 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "r1", "type": "router", "name": "R1"},
-                {"id": "r2", "type": "router", "name": "R2"},
-                {"id": "internet", "type": "cloud", "name": "Internet"},
+                {"type": "router", "label": "R1", "x": 100, "y": 200},
+                {"type": "router", "label": "R2", "x": 300, "y": 200},
+                {"type": "cloud", "label": "Internet", "x": 500, "y": 200},
             ],
             "connections": [
-                {"from": "r1", "to": "internet", "from_port": "gi0/0", "to_port": "port1"},
-                {"from": "r2", "to": "internet", "from_port": "gi0/0", "to_port": "port2"},
+                {"source": "R1", "target": "Internet", "source_interface": "gi0/0", "target_interface": "port1"},
+                {"source": "R2", "target": "Internet", "source_interface": "gi0/0", "target_interface": "port2"},
             ],
         },
         "verification_rules": {"tunnel_up": True, "end_to_end_ping": True},
@@ -410,11 +410,11 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "r1", "type": "router", "name": "R1"},
-                {"id": "r2", "type": "router", "name": "R2"},
+                {"type": "router", "label": "R1", "x": 100, "y": 200},
+                {"type": "router", "label": "R2", "x": 300, "y": 200},
             ],
             "connections": [
-                {"from": "r1", "to": "r2", "from_port": "gi0/0", "to_port": "gi0/0"},
+                {"source": "R1", "target": "R2", "source_interface": "gi0/0", "target_interface": "gi0/0"},
             ],
         },
         "verification_rules": {"gre_tunnel_up": True, "routing_over_tunnel": True},
@@ -450,13 +450,13 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "r1", "type": "router", "name": "R1", "asn": 65001},
-                {"id": "r2", "type": "router", "name": "R2", "asn": 65002},
-                {"id": "r3", "type": "router", "name": "R3", "asn": 65003},
+                {"type": "router", "label": "R1", "x": 100, "y": 200, "asn": 65001},
+                {"type": "router", "label": "R2", "x": 300, "y": 200, "asn": 65002},
+                {"type": "router", "label": "R3", "x": 500, "y": 200, "asn": 65003},
             ],
             "connections": [
-                {"from": "r1", "to": "r2", "from_port": "gi0/0", "to_port": "gi0/0"},
-                {"from": "r2", "to": "r3", "from_port": "gi0/1", "to_port": "gi0/0"},
+                {"source": "R1", "target": "R2", "source_interface": "gi0/0", "target_interface": "gi0/0"},
+                {"source": "R2", "target": "R3", "source_interface": "gi0/1", "target_interface": "gi0/0"},
             ],
         },
         "verification_rules": {"inter_as_reachability": True, "policy_applied": True},
@@ -492,13 +492,13 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "r1", "type": "router", "name": "R1"},
-                {"id": "r2", "type": "router", "name": "R2"},
-                {"id": "pc1", "type": "host", "name": "PC1"},
+                {"type": "router", "label": "R1", "x": 100, "y": 200},
+                {"type": "router", "label": "R2", "x": 300, "y": 200},
+                {"type": "host", "label": "PC1", "x": 500, "y": 200},
             ],
             "connections": [
-                {"from": "r1", "to": "r2", "from_port": "gi0/0", "to_port": "gi0/0"},
-                {"from": "r1", "to": "pc1", "from_port": "gi0/1", "to_port": "eth0"},
+                {"source": "R1", "target": "R2", "source_interface": "gi0/0", "target_interface": "gi0/0"},
+                {"source": "R1", "target": "PC1", "source_interface": "gi0/1", "target_interface": "eth0"},
             ],
         },
         "verification_rules": {"ipv6_routing": True, "end_to_end_ipv6": True},
@@ -534,13 +534,13 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "fw1", "type": "firewall", "name": "FW1"},
-                {"id": "client1", "type": "host", "name": "Remote Client"},
-                {"id": "server1", "type": "server", "name": "Internal Server"},
+                {"type": "firewall", "label": "FW1", "x": 100, "y": 200},
+                {"type": "host", "label": "Remote Client", "x": 300, "y": 200},
+                {"type": "server", "label": "Internal Server", "x": 500, "y": 200},
             ],
             "connections": [
-                {"from": "client1", "to": "fw1", "from_port": "eth0", "to_port": "outside"},
-                {"from": "fw1", "to": "server1", "from_port": "inside", "to_port": "eth0"},
+                {"source": "Remote Client", "target": "FW1", "source_interface": "eth0", "target_interface": "outside"},
+                {"source": "FW1", "target": "Internal Server", "source_interface": "inside", "target_interface": "eth0"},
             ],
         },
         "verification_rules": {"vpn_connected": True, "internal_access": True},
@@ -577,11 +577,11 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "r1", "type": "router", "name": "R1"},
-                {"id": "pc1", "type": "host", "name": "Admin PC"},
+                {"type": "router", "label": "R1", "x": 100, "y": 200},
+                {"type": "host", "label": "Admin PC", "x": 300, "y": 200},
             ],
             "connections": [
-                {"from": "pc1", "to": "r1", "from_port": "eth0", "to_port": "gi0/0"},
+                {"source": "Admin PC", "target": "R1", "source_interface": "eth0", "target_interface": "gi0/0"},
             ],
         },
         "verification_rules": {"ssh_enabled": True, "ssh_version": 2, "telnet_disabled": True},
@@ -618,13 +618,13 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "r1", "type": "router", "name": "R1"},
-                {"id": "pc1", "type": "host", "name": "PC1"},
-                {"id": "server1", "type": "server", "name": "Web Server"},
+                {"type": "router", "label": "R1", "x": 100, "y": 200},
+                {"type": "host", "label": "PC1", "x": 300, "y": 200},
+                {"type": "server", "label": "Web Server", "x": 500, "y": 200},
             ],
             "connections": [
-                {"from": "pc1", "to": "r1", "from_port": "eth0", "to_port": "gi0/0"},
-                {"from": "r1", "to": "server1", "from_port": "gi0/1", "to_port": "eth0"},
+                {"source": "PC1", "target": "R1", "source_interface": "eth0", "target_interface": "gi0/0"},
+                {"source": "R1", "target": "Web Server", "source_interface": "gi0/1", "target_interface": "eth0"},
             ],
         },
         "verification_rules": {"acl_applied": True, "traffic_filtered": True},
@@ -660,13 +660,13 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "r1", "type": "router", "name": "R1"},
-                {"id": "pc1", "type": "host", "name": "PC1"},
-                {"id": "internet", "type": "cloud", "name": "Internet"},
+                {"type": "router", "label": "R1", "x": 100, "y": 200},
+                {"type": "host", "label": "PC1", "x": 300, "y": 200},
+                {"type": "cloud", "label": "Internet", "x": 500, "y": 200},
             ],
             "connections": [
-                {"from": "pc1", "to": "r1", "from_port": "eth0", "to_port": "gi0/0"},
-                {"from": "r1", "to": "internet", "from_port": "gi0/1", "to_port": "port1"},
+                {"source": "PC1", "target": "R1", "source_interface": "eth0", "target_interface": "gi0/0"},
+                {"source": "R1", "target": "Internet", "source_interface": "gi0/1", "target_interface": "port1"},
             ],
         },
         "verification_rules": {"nat_translations_active": True, "internet_reachability": True},
@@ -702,15 +702,15 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "r1", "type": "router", "name": "R1"},
-                {"id": "pc1", "type": "host", "name": "PC1"},
-                {"id": "pc2", "type": "host", "name": "PC2"},
-                {"id": "internet", "type": "cloud", "name": "Internet"},
+                {"type": "router", "label": "R1", "x": 100, "y": 200},
+                {"type": "host", "label": "PC1", "x": 300, "y": 200},
+                {"type": "host", "label": "PC2", "x": 500, "y": 200},
+                {"type": "cloud", "label": "Internet", "x": 700, "y": 200},
             ],
             "connections": [
-                {"from": "pc1", "to": "r1", "from_port": "eth0", "to_port": "gi0/0"},
-                {"from": "pc2", "to": "r1", "from_port": "eth0", "to_port": "gi0/0"},
-                {"from": "r1", "to": "internet", "from_port": "gi0/1", "to_port": "port1"},
+                {"source": "PC1", "target": "R1", "source_interface": "eth0", "target_interface": "gi0/0"},
+                {"source": "PC2", "target": "R1", "source_interface": "eth0", "target_interface": "gi0/0"},
+                {"source": "R1", "target": "Internet", "source_interface": "gi0/1", "target_interface": "port1"},
             ],
         },
         "verification_rules": {"pat_active": True, "multiple_sessions": True},
@@ -746,13 +746,13 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "ap1", "type": "wireless-ap", "name": "AP1"},
-                {"id": "wlan_client1", "type": "wireless-host", "name": "Laptop1"},
-                {"id": "sw1", "type": "switch", "name": "SW1"},
+                {"type": "wireless-ap", "label": "AP1", "x": 100, "y": 200},
+                {"type": "wireless-host", "label": "Laptop1", "x": 300, "y": 200},
+                {"type": "switch", "label": "SW1", "x": 500, "y": 200},
             ],
             "connections": [
-                {"from": "ap1", "to": "sw1", "from_port": "eth0", "to_port": "fa0/1"},
-                {"from": "wlan_client1", "to": "ap1", "from_port": "wlan0", "to_port": "radio0", "wireless": True},
+                {"source": "AP1", "target": "SW1", "source_interface": "eth0", "target_interface": "fa0/1"},
+                {"source": "Laptop1", "target": "AP1", "source_interface": "wlan0", "target_interface": "radio0", "wireless": True},
             ],
         },
         "verification_rules": {"ssid_broadcast": True, "client_associated": True},
@@ -788,15 +788,15 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "wlc1", "type": "wireless-controller", "name": "WLC1"},
-                {"id": "ap1", "type": "wireless-ap", "name": "AP1"},
-                {"id": "ap2", "type": "wireless-ap", "name": "AP2"},
-                {"id": "sw1", "type": "switch", "name": "SW1"},
+                {"type": "wireless-controller", "label": "WLC1", "x": 100, "y": 200},
+                {"type": "wireless-ap", "label": "AP1", "x": 300, "y": 200},
+                {"type": "wireless-ap", "label": "AP2", "x": 500, "y": 200},
+                {"type": "switch", "label": "SW1", "x": 700, "y": 200},
             ],
             "connections": [
-                {"from": "wlc1", "to": "sw1", "from_port": "gi0/0", "to_port": "fa0/24"},
-                {"from": "ap1", "to": "sw1", "from_port": "eth0", "to_port": "fa0/1"},
-                {"from": "ap2", "to": "sw1", "from_port": "eth0", "to_port": "fa0/2"},
+                {"source": "WLC1", "target": "SW1", "source_interface": "gi0/0", "target_interface": "fa0/24"},
+                {"source": "AP1", "target": "SW1", "source_interface": "eth0", "target_interface": "fa0/1"},
+                {"source": "AP2", "target": "SW1", "source_interface": "eth0", "target_interface": "fa0/2"},
             ],
         },
         "verification_rules": {"aps_joined": True, "wlan_active": True},
@@ -833,13 +833,13 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "wlc1", "type": "wireless-controller", "name": "WLC1"},
-                {"id": "ap1", "type": "wireless-ap", "name": "AP1"},
-                {"id": "radius1", "type": "server", "name": "RADIUS"},
+                {"type": "wireless-controller", "label": "WLC1", "x": 100, "y": 200},
+                {"type": "wireless-ap", "label": "AP1", "x": 300, "y": 200},
+                {"type": "server", "label": "RADIUS", "x": 500, "y": 200},
             ],
             "connections": [
-                {"from": "wlc1", "to": "radius1", "from_port": "gi0/0", "to_port": "eth0"},
-                {"from": "ap1", "to": "wlc1", "from_port": "eth0", "to_port": "gi0/1"},
+                {"source": "WLC1", "target": "RADIUS", "source_interface": "gi0/0", "target_interface": "eth0"},
+                {"source": "AP1", "target": "WLC1", "source_interface": "eth0", "target_interface": "gi0/1"},
             ],
         },
         "verification_rules": {"wpa3_enabled": True, "radius_auth": True},
@@ -875,15 +875,15 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "wlc1", "type": "wireless-controller", "name": "WLC1"},
-                {"id": "ap1", "type": "wireless-ap", "name": "AP1", "channel": 1},
-                {"id": "ap2", "type": "wireless-ap", "name": "AP2", "channel": 6},
-                {"id": "ap3", "type": "wireless-ap", "name": "AP3", "channel": 11},
+                {"type": "wireless-controller", "label": "WLC1", "x": 100, "y": 200},
+                {"type": "wireless-ap", "label": "AP1", "x": 300, "y": 200, "channel": 1},
+                {"type": "wireless-ap", "label": "AP2", "x": 500, "y": 200, "channel": 6},
+                {"type": "wireless-ap", "label": "AP3", "x": 700, "y": 200, "channel": 11},
             ],
             "connections": [
-                {"from": "wlc1", "to": "ap1", "from_port": "gi0/0", "to_port": "eth0"},
-                {"from": "wlc1", "to": "ap2", "from_port": "gi0/1", "to_port": "eth0"},
-                {"from": "wlc1", "to": "ap3", "from_port": "gi0/2", "to_port": "eth0"},
+                {"source": "WLC1", "target": "AP1", "source_interface": "gi0/0", "target_interface": "eth0"},
+                {"source": "WLC1", "target": "AP2", "source_interface": "gi0/1", "target_interface": "eth0"},
+                {"source": "WLC1", "target": "AP3", "source_interface": "gi0/2", "target_interface": "eth0"},
             ],
         },
         "verification_rules": {"coverage_complete": True, "no_channel_overlap": True},
@@ -920,15 +920,15 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "fw1", "type": "firewall", "name": "FW1"},
-                {"id": "pc1", "type": "host", "name": "Internal PC"},
-                {"id": "server1", "type": "server", "name": "DMZ Server"},
-                {"id": "internet", "type": "cloud", "name": "Internet"},
+                {"type": "firewall", "label": "FW1", "x": 100, "y": 200},
+                {"type": "host", "label": "Internal PC", "x": 300, "y": 200},
+                {"type": "server", "label": "DMZ Server", "x": 500, "y": 200},
+                {"type": "cloud", "label": "Internet", "x": 700, "y": 200},
             ],
             "connections": [
-                {"from": "pc1", "to": "fw1", "from_port": "eth0", "to_port": "inside"},
-                {"from": "server1", "to": "fw1", "from_port": "eth0", "to_port": "dmz"},
-                {"from": "internet", "to": "fw1", "from_port": "port1", "to_port": "outside"},
+                {"source": "Internal PC", "target": "FW1", "source_interface": "eth0", "target_interface": "inside"},
+                {"source": "DMZ Server", "target": "FW1", "source_interface": "eth0", "target_interface": "dmz"},
+                {"source": "Internet", "target": "FW1", "source_interface": "port1", "target_interface": "outside"},
             ],
         },
         "verification_rules": {"zones_defined": True, "stateful_inspection": True, "dmz_accessible": True},
@@ -966,21 +966,21 @@ LAB_SEED_DATA = [
         ],
         "initial_topology": {
             "devices": [
-                {"id": "core_sw", "type": "switch", "name": "Core Switch"},
-                {"id": "r1", "type": "router", "name": "Edge Router"},
-                {"id": "fw1", "type": "firewall", "name": "Firewall"},
-                {"id": "wlc1", "type": "wireless-controller", "name": "WLC"},
-                {"id": "ap1", "type": "wireless-ap", "name": "AP1"},
-                {"id": "pc1", "type": "host", "name": "Workstation"},
-                {"id": "server1", "type": "server", "name": "App Server"},
+                {"type": "switch", "label": "Core Switch", "x": 100, "y": 200},
+                {"type": "router", "label": "Edge Router", "x": 300, "y": 200},
+                {"type": "firewall", "label": "Firewall", "x": 500, "y": 200},
+                {"type": "wireless-controller", "label": "WLC", "x": 700, "y": 200},
+                {"type": "wireless-ap", "label": "AP1", "x": 900, "y": 200},
+                {"type": "host", "label": "Workstation", "x": 1100, "y": 200},
+                {"type": "server", "label": "App Server", "x": 1300, "y": 200},
             ],
             "connections": [
-                {"from": "pc1", "to": "core_sw", "from_port": "eth0", "to_port": "fa0/1"},
-                {"from": "core_sw", "to": "fw1", "from_port": "gi0/1", "to_port": "inside"},
-                {"from": "fw1", "to": "r1", "from_port": "outside", "to_port": "gi0/0"},
-                {"from": "core_sw", "to": "wlc1", "from_port": "gi0/2", "to_port": "gi0/0"},
-                {"from": "wlc1", "to": "ap1", "from_port": "gi0/1", "to_port": "eth0"},
-                {"from": "server1", "to": "fw1", "from_port": "eth0", "to_port": "dmz"},
+                {"source": "Workstation", "target": "Core Switch", "source_interface": "eth0", "target_interface": "fa0/1"},
+                {"source": "Core Switch", "target": "Firewall", "source_interface": "gi0/1", "target_interface": "inside"},
+                {"source": "Firewall", "target": "Edge Router", "source_interface": "outside", "target_interface": "gi0/0"},
+                {"source": "Core Switch", "target": "WLC", "source_interface": "gi0/2", "target_interface": "gi0/0"},
+                {"source": "WLC", "target": "AP1", "source_interface": "gi0/1", "target_interface": "eth0"},
+                {"source": "App Server", "target": "Firewall", "source_interface": "eth0", "target_interface": "dmz"},
             ],
         },
         "verification_rules": {

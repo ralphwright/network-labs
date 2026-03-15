@@ -68,7 +68,10 @@ export interface Topology {
   user_id: string
   lab_id: string
   name: string
-  topology_data: Record<string, unknown>
+  description: string | null
+  is_template: boolean
+  devices: Device[]
+  connections: Connection[]
   created_at: string
   updated_at: string
 }
@@ -97,33 +100,22 @@ export interface Connection {
   created_at: string
 }
 
+export interface SimulationCheck {
+  passed: boolean
+  message: string
+}
+
 export interface Simulation {
   id: string
   topology_id: string
   lab_id: string
   user_id: string
   status: 'pending' | 'running' | 'completed' | 'failed'
-  results: SimulationResults | null
-  verification_results: VerificationResults | null
+  configuration: Record<string, unknown> | null
+  results: Record<string, unknown> | null
   started_at: string | null
   completed_at: string | null
   created_at: string
-}
-
-export interface SimulationResults {
-  [key: string]: unknown
-}
-
-export interface VerificationResults {
-  passed: boolean
-  score: number
-  checks: VerificationCheck[]
-}
-
-export interface VerificationCheck {
-  rule_id: string
-  passed: boolean
-  message: string
 }
 
 export interface Progress {
@@ -131,12 +123,9 @@ export interface Progress {
   user_id: string
   lab_id: string
   status: 'not_started' | 'in_progress' | 'completed'
-  current_step: number
-  objectives_completed: string[]
   score: number
   attempts: number
-  best_score: number
-  time_spent_seconds: number
+  last_simulation_id: string | null
   completed_at: string | null
   updated_at: string
 }
